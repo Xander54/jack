@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    body{
+
+
+        background-color: cornflowerblue;
+        box-shadow: .2ch;
+       }
+#page{
+    font-size:45px;
+    text-align: center;
+}
+input{
+    font-size:30px;
+    
+}
+#bt{
+    border-color: cornflowerblue;
+ background-color:darkslateblue;
+ box-shadow: 0px;
+}
+</style>
+<title>Home</title>
+<body>
+<div id='page'>
+<h1 id='page'><marquee>Welcome</marquee></h1>
+<form method="post" action="location">
+    {% csrf_token %}
+<p id='page'>Entre a phone number:</p><p>
+<input type='text' name='phone'>
+</p>
+<p><input  id='bt'type='submit' value="Locate phone number"></p>
+</form>
+</div>
+
+
+</body>
+</head>
+</html>
