@@ -27,7 +27,7 @@ def location(request):
             lng=result[0]['geometry']['lng']
             myMap=folium.Map(location=[lat,lng],zoom_start=9)
             folium.Marker([lat,lng],popup=location).add_to(myMap)
-            os.chdir('location_holder/templates/location/')
+            os.chdir('./location_holder/templates/location/')
             myMap.save('mylocation.html')
             return render(request,'location/wait.html',{'phone':phone_number,'network':service_pro,'location':location})
         except :
