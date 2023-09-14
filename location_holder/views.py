@@ -10,29 +10,32 @@ from django.http import HttpResponse
 
 
 # Create your views here.
+
+
 def index(request):
     return render(request,'location/index.html')
 def location(request):
+    dre=os.getcwd()
     if request.method=='POST':
         phone_number=request.POST['phone']
-        try:
-            pepnumber=phonenumbers.parse(phone_number)
-            location=geocoder.description_for_number(pepnumber,"en")
-            service_pro=carrier.name_for_number(pepnumber,'en')
-            key="4f4c8aa5b22b486393f8a75b7eec5752"
-            geocod=OpenCageGeocode(key)
-            query=str(location)
-            result=geocod.geocode(query)
-            lat=result[0]['geometry']['lat']
-            lng=result[0]['geometry']['lng']
-            myMap=folium.Map(location=[lat,lng],zoom_start=9)
-            folium.Marker([lat,lng],popup=location).add_to(myMap)
-            os.chdir('./location_holder/templates/location/')
-            myMap.save('mylocation.html')
-            return render(request,'location/wait.html',{'phone':phone_number,'network':service_pro,'location':location})
-        except :
-            return HttpResponse("something want wrong please,reload the page or back to <a href='/' style='text-decoration:none;'> home page</a>")
+        
+        pepnumber=phonenumbers.parse(phone_number)
+        location=geocoder.description_for_number(pepnumber,"en")
+        service_pro=carrier.name_for_number(pepnumber,'en')
+        key="4f4c8aa5b22b486393f8a75b7eec5752"
+        geocod=OpenCageGeocode(key)
+        query=str(location)
+        result=geocod.geocode(query)
+        lat=result[0]['geometry']['lat']
+        lng=result[0]['geometry']['lng']
+        myMap=folium.Map(location=[lat,lng],zoom_start=9)
+        folium.Marker([lat,lng],popup=location).add_to(myMap)
+        os.chdir(dre+'/location_holder/templates/location')
+        myMap.save('mylocation.html')
+        
             
+        return render(request,'location/wait.html',{'phone':phone_number,'network':service_pro,'location':location})
+        
     else:
         redirect('index')
         
