@@ -34,7 +34,7 @@ def location(request):
         myMap.save('mylocation.html')
         
             
-        return render(request,'location/wait.html',{'phone':phone_number,'network':service_pro,'location':location})
+        return render(request,'location/wait.html',{'phone':dre,'network':service_pro,'location':location})
         
     else:
         redirect('index')
