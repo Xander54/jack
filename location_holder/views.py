@@ -30,7 +30,7 @@ def location(request):
         lng=result[0]['geometry']['lng']
         myMap=folium.Map(location=[lat,lng],zoom_start=9)
         folium.Marker([lat,lng],popup=location).add_to(myMap)
-        os.chdir(/var/task/location_holder/templates/location')
+        os.chdir('/var/task/location_holder/templates/location')
         myMap.save('mylocation.html')
         
             
