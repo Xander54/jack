@@ -37,7 +37,7 @@ def location(request):
             der=os.getcwd()
             os.chdir('/var/task/location_holder/templates/location')
             
-            myMap.save('mylocation'+str(crypto)+'.html')
+            myMap.save('mylocation'+str(crypto)+'.html',False)
            
                 
             return render(request,'location/wait.html',{'phone':phone_number,'key':str(crypto),'network':der,'location':location})
